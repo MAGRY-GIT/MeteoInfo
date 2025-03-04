@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <MeteoInfo File="config.xml" Type="configurefile">
-  <Path OpenPath="D:\Temp\nc\2021_daily_4_VOD"/>
+  <Path OpenPath="D:\Edge浏览器下载"/>
   <Font>
     <TextFont FontName="YaHei Consolas Hybrid" FontSize="14"/>
     <LegendFont FontName="宋体" FontSize="12"/>
@@ -8,5 +8,5 @@
   <ScriptLanguage Language="Jython"/>
   <LookFeel LafDecorated="true" Name="FlatLightLaf"/>
   <Figure DoubleBuffering="true"/>
-  <Startup MainFormLocation="-7,-7" MainFormSize="1293,685" ShowMeteoDataDlg="true"/>
+  <Startup MainFormLocation="320,142" MainFormSize="1293,714" ShowMeteoDataDlg="true"/>
 </MeteoInfo>

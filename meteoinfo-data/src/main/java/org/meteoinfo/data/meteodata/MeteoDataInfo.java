@@ -61,6 +61,8 @@ import ucar.nc2.NetcdfFiles;
 /**
  *
  * @author Yaqiang Wang
+ * MeteoDataInfo 类表示气象数据信息。
+ * 主要用于封装各种类型的气象数据，便于管理和访问。
  */
 public class MeteoDataInfo {
     // <editor-fold desc="Variables">
@@ -103,13 +105,24 @@ public class MeteoDataInfo {
     /**
      * Constructor
      */
+    /**
+     * 构造函数用于初始化MeteoDataInfo对象
+     * 该构造函数设置了对象的初始状态，为对象的属性赋予了默认值
+     */
     public MeteoDataInfo() {
+        // 初始化dataInfo为null，表示尚未设置任何数据信息
         dataInfo = null;
+        // 默认设置IsLonLat为true，表示使用经纬度数据
         IsLonLat = true;
+        // 默认设置EarthWind为true，表示使用地球风数据
         EarthWind = true;
+        // 初始化_infoText为空字符串，用于存储信息文本
         _infoText = "";
+        // 初始化_meteoUVSet为一个新的MeteoUVSet对象，用于存储紫外线信息
         _meteoUVSet = new MeteoUVSet();
+        // 默认设置xReserve为false，表示X轴数据不进行反转
         xReserve = false;
+        // 默认设置yReserve为false，表示Y轴数据不进行反转
         yReserve = false;
     }
     // </editor-fold>
@@ -228,7 +241,7 @@ public class MeteoDataInfo {
     }
 
     /**
-     * Set variable name
+     * 设置变量名称
      *
      * @param value Variable name
      */
@@ -237,7 +250,7 @@ public class MeteoDataInfo {
     }
 
     /**
-     * Get longitude index
+     *获取经度索引
      *
      * @return Longitude index
      */
@@ -775,24 +788,28 @@ public class MeteoDataInfo {
         openNetCDFData(fileName, false);
     }
 
-    /**
-     * Open NetCDF data
-     *
-     * @param fileName File path
-     * @param keepOpen Keep file opened or not
-     */
-    public void openNetCDFData(String fileName, boolean keepOpen) {
-        NetCDFDataInfo aDataInfo = new NetCDFDataInfo();
-        aDataInfo.readDataInfo(fileName, keepOpen);
-        dataInfo = aDataInfo;
-        _infoText = aDataInfo.generateInfoText();
-    }
+/**
+ * 打开 NetCDF 数据文件。
+ *
+ * @param fileName 文件路径
+ * @param keepOpen 是否保持文件打开状态
+ */
+public void openNetCDFData(String fileName, boolean keepOpen) {
+    // 创建 NetCDFDataInfo 对象并读取数据信息
+    NetCDFDataInfo aDataInfo = new NetCDFDataInfo();
+    aDataInfo.readDataInfo(fileName, keepOpen);
+
+    // 将读取的数据信息保存到成员变量中
+    dataInfo = aDataInfo;
+    _infoText = aDataInfo.generateInfoText();
+}
+
     
     /**
      * Open NetCDF data
      *
      * @param ncfile Netcdf file
-     * @param keepOpen Keep file opened or not
+     * @param keepOpen 是否保持文件打开
      */
     public void openNetCDFData(NetcdfFile ncfile, boolean keepOpen) {
         NetCDFDataInfo aDataInfo = new NetCDFDataInfo();

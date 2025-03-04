@@ -1047,7 +1047,7 @@ public class DrawMeteoData {
     }
 
     /**
-     * Create shaded layer
+     * 创建着色图层
      *
      * @param data Grid data array
      * @param x X array
@@ -1064,7 +1064,7 @@ public class DrawMeteoData {
     }
 
     /**
-     * Create shaded layer
+     * Create shaded layer创建着色图层
      *
      * @param gridData Grid data
      * @param aLS Legend scheme

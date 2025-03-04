@@ -53,7 +53,7 @@ public class MathParser {
     // <editor-fold desc="Methods">
 
     /**
-     * Evaluates the specified expression
+     * 计算指定的表达式
      *
      * @param expression The expression to evaluate
      * @return The evaluated result

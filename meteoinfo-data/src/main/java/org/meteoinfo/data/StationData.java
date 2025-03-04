@@ -40,24 +40,24 @@ import org.meteoinfo.projection.Reproject;
  public class StationData {
      // <editor-fold desc="Variables">
      /// <summary>
-     /// station data: longitude, latitude, value
+     /// 测站数据：经度、纬度、值
      /// </summary>
 
      public double[][] data;
      /// <summary>
-     /// Station identifer list
+     /// 工作站 IDENTIFER 列表
      /// </summary>
      public List<String> stations;
      /// <summary>
-     /// Data extent
+     /// 数据范围
      /// </summary>
      public Extent dataExtent;
      /// <summary>
-     /// Undef data
+     /// Undef 数据
      /// </summary>
      public double missingValue;
      /**
-      * Projection information
+      * 投影信息
       */
      public ProjectionInfo projInfo = null;
      // </editor-fold>
@@ -76,10 +76,10 @@ import org.meteoinfo.projection.Reproject;
      /**
       * Constructor
       *
-      * @param a Array data
+      * @param a 数组数据
       * @param x Array x
       * @param y Array y
-      * @param missingv Missing value
+      * @param missingv 缺失值
       */
      public StationData(Array a, Array x, Array y, Number missingv) {
          int n = (int) a.getSize();
@@ -183,7 +183,7 @@ import org.meteoinfo.projection.Reproject;
      }
 
      /**
-      * Get station data array
+      * 获取 station 数据数组
       *
       * @return Station data array
       */
@@ -1023,7 +1023,7 @@ import org.meteoinfo.projection.Reproject;
      // </editor-fold>
 
      /**
-      * Filter station data by radius and extent
+      * 按半径和范围过滤站点数据
       *
       * @param radius Radius
       * @param aExtent Data extent

@@ -948,11 +948,11 @@ public class InterpUtil {
     }
 
     /**
-     * Kriging interpolation
+     * 克里金插值法
      *
-     * @param x_s scatter X array
-     * @param y_s scatter Y array
-     * @param v_s scatter value array
+     * @param x_s scatter X 数组
+     * @param y_s scatter Y 数组
+     * @param v_s scatter value 数组
      * @param X x array
      * @param Y y array
      * @param beta Beta value

@@ -65,7 +65,7 @@ import java.util.List;
  //    }
 
      /**
-      * Tracing contour lines with undefined data
+      * 使用未定义数据描摹等值线
       *
       * @param gridData Grid data
       * @param cValues Values
@@ -84,7 +84,7 @@ import java.util.List;
      }
 
      /**
-      * Tracing shaded polygons with undefined data
+      * 使用未定义数据追踪着色多边形
       *
       * @param gridData Grid data
       * @param contourLines Contour lines

@@ -24,14 +24,20 @@ import java.util.List;
  */
 public class InterpolationSetting {
     // <editor-fold desc="Variables">
-
+    //网格数据设置
     private GridDataSetting _gridDataPara = new GridDataSetting();
+    //插值方法
     private InterpolationMethods _gridInterMethod;
+    //最小点数
     private int _minPointNum;
+    //半径
     private double _radius;
+    //缺失值
     private double _missingValue = -9999.0;
-    private List<Double> _radList;    //For cressman and barnes analysis
-    private double beta = 1.5;    //For kriging interpolation
+    ///对于 cressman 和 barnes 分析
+    private List<Double> _radList;
+    //对于克里金插值法
+    private double beta = 1.5;
     // </editor-fold>
     // <editor-fold desc="Constructor">
 

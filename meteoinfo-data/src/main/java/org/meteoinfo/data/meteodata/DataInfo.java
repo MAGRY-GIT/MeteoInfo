@@ -39,22 +39,89 @@ import org.meteoinfo.projection.ProjectionInfo;
  public abstract class DataInfo {
 
      // <editor-fold desc="Variables">
-
+     /**
+      * 文件名
+      * 用于存储气象数据文件的名称
+      */
      protected String fileName;
-     protected List<Variable> variables = new ArrayList<>();
-     protected List<Dimension> dimensions = new ArrayList<>();
-     protected List<Attribute> attributes = new ArrayList<>();
-     protected Dimension tDim = null;
-     protected Dimension xDim = null;
-     protected Dimension yDim = null;
-     protected Dimension zDim = null;
-     protected boolean xReverse = false;
-     protected boolean yReverse = false;
-     protected boolean isGlobal = false;
-     protected double missingValue = -9999.0;
-     protected ProjectionInfo projInfo = KnownCoordinateSystems.geographic.world.WGS1984;
-     protected MeteoDataType meteoDataType;
 
+     /**
+      * 变量列表
+      * 存储了所有气象变量对象，如温度、湿度等
+      */
+     protected List<Variable> variables = new ArrayList<>();
+
+     /**
+      * 维度列表
+      * 存储了所有维度对象，如时间、经纬度等
+      */
+     protected List<Dimension> dimensions = new ArrayList<>();
+
+     /**
+      * 属性列表
+      * 存储了所有全局属性对象，这些属性提供了额外的气象数据信息
+      */
+     protected List<Attribute> attributes = new ArrayList<>();
+
+     /**
+      * 时间维度
+      * 指定了时间维度的对象，便于时间序列的处理
+      */
+     protected Dimension tDim = null;
+
+     /**
+      * 经度维度
+      * 指定了经度维度的对象，用于地理空间数据的处理
+      */
+     protected Dimension xDim = null;
+
+     /**
+      * 纬度维度
+      * 指定了纬度维度的对象，用于地理空间数据的处理
+      */
+     protected Dimension yDim = null;
+
+     /**
+      * 高度/深度维度
+      * 指定了高度或深度维度的对象，用于垂直层次数据的处理
+      */
+     protected Dimension zDim = null;
+
+     /**
+      * 经度反转标志
+      * 表示经度维度的数据顺序是否需要反转，以适应某些特定的数据处理需求
+      */
+     protected boolean xReverse = false;
+
+     /**
+      * 纬度反转标志
+      * 表示纬度维度的数据顺序是否需要反转，以适应某些特定的数据处理需求
+      */
+     protected boolean yReverse = false;
+
+     /**
+      * 全局数据标志
+      * 表示当前数据是否为全局数据，这影响数据处理和显示的方式
+      */
+     protected boolean isGlobal = false;
+
+     /**
+      * 缺省值
+      * 用于表示气象数据中缺失值的数值，以便在数据处理中识别和处理缺失数据
+      */
+     protected double missingValue = -9999.0;
+
+     /**
+      * 投影信息
+      * 定义了数据使用的坐标系统，这在地理空间数据处理中至关重要
+      */
+     protected ProjectionInfo projInfo = KnownCoordinateSystems.geographic.world.WGS1984;
+
+     /**
+      * 气象数据类型
+      * 指定了当前处理的气象数据类型，这可能影响数据的解析和处理方式
+      */
+     protected MeteoDataType meteoDataType;
      // </editor-fold>
      // <editor-fold desc="Constructor">
      // </editor-fold>

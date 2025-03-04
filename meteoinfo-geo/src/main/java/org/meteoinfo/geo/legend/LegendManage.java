@@ -1761,7 +1761,7 @@ public class LegendManage {
     }
 
     /**
-     * Get contour values and colors from legend scheme
+     * 从图例方案中获取等值线值和颜色
      *
      * @param aLS The legend scheme
      * @return Contour and color values

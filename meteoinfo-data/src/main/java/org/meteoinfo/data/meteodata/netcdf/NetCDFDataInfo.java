@@ -66,22 +66,69 @@ import ucar.unidata.io.RandomAccessFile;
  */
 public class NetCDFDataInfo extends DataInfo implements IGridDataInfo, IStationDataInfo {
     // <editor-fold desc="Variables">
-
+    /**
+     * 文件类型描述字符串
+     */
     private String fileTypeStr;
+    /**
+     * 文件类型标识符
+     */
     private String fileTypeId;
+    /**
+     * 数据约定标准，默认为CF（Climate and Forecast）约定
+     */
     private Conventions convention = Conventions.CF;
+    /**
+     * NetCDF数据集对象，用于处理和访问数据
+     */
     private NetcdfDataset ncDataset = null;
+    /**
+     * NetCDF文件对象，用于底层文件访问
+     */
     private NetcdfFile ncfile = null;
+    /**
+     * 是否保持文件打开状态的标志
+     */
     private boolean keepOpen = false;
+    /**
+     * NetCDF变量列表，用于存储数据集中的变量信息
+     */
     private List<ucar.nc2.Variable> ncVariables = new ArrayList<>();
+    /**
+     * NetCDF维度列表，用于存储数据集中的维度信息
+     */
     private List<ucar.nc2.Dimension> ncDimensions = new ArrayList<>();
+    /**
+     * 自定义维度列表，用于存储处理后的维度信息
+     */
     private List<Dimension> dimensions = new ArrayList<>();
+    /**
+     * NetCDF属性列表，用于存储数据集中的全局属性或变量属性
+     */
     private List<ucar.nc2.Attribute> ncAttributes = new ArrayList<>();
+    /**
+     * X坐标变量，用于存储和处理X轴方向的坐标数据
+     */
     private ucar.nc2.Variable xVar = null;
+    /**
+     * Y坐标变量，用于存储和处理Y轴方向的坐标数据
+     */
     private ucar.nc2.Variable yVar = null;
+    /**
+     * 垂直层次变量，用于存储和处理垂直方向的层次数据
+     */
     private ucar.nc2.Variable levelVar = null;
+    /**
+     * 是否为HDF-EOS文件的标志
+     */
     private boolean isHDFEOS = false;
+    /**
+     * 是否为SWATH数据类型的标志
+     */
     private boolean isSWATH = false;
+    /**
+     * 是否为PROFILE数据类型的标志
+     */
     private boolean isPROFILE = false;
     // </editor-fold>
     // <editor-fold desc="Constructor">
@@ -161,11 +208,16 @@ public class NetCDFDataInfo extends DataInfo implements IGridDataInfo, IStationD
     }
 
     /**
-     * Get if is SWATH
+     * Determines if the current mode is SWATH or PROFILE.
      *
-     * @return Boolean
+     * This method decides whether the current mode is SWATH or PROFILE by checking the values of the isSWATH and isPROFILE variables.
+     * If either of these two variables is true, it indicates that the current mode is one of them, and the method returns true.
+     * Otherwise, it returns false.
+     *
+     * @return boolean: Returns true if either isSWATH or isPROFILE is true; otherwise, returns false.
      */
     public boolean isSWATH() {
+        // Checks if either isSWATH or isPROFILE is true, and returns true if so.
         if (isSWATH || isPROFILE) {
             return true;
         } else {

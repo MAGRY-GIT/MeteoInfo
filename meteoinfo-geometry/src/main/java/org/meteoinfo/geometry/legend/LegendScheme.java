@@ -39,7 +39,7 @@ package org.meteoinfo.geometry.legend;
  import java.util.logging.Logger;
 
  /**
-  * Legend scheme class
+  *  图例方案类
   *
   * @author Yaqiang Wang
   */
@@ -1555,7 +1555,7 @@ package org.meteoinfo.geometry.legend;
      }
 
      /**
-      * Import legend scheme from XML file
+      * 从 XML 文件导入图例方案
       *
       * @param aFile file path
       * @param keepShape If keep shape type
@@ -1580,7 +1580,7 @@ package org.meteoinfo.geometry.legend;
      }
 
      /**
-      * Import legend scheme from an image color palette file
+      * 从图像调色板文件导入图例方案
       *
       * @param filePath File path
       */
@@ -1627,7 +1627,7 @@ package org.meteoinfo.geometry.legend;
      }
 
      /**
-      * Import legend scheme from an image color palette file
+      * 从图像调色板文件导入图例方案
       *
       * @param filePath File path
       */

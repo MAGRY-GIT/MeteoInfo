@@ -234,7 +234,7 @@ public class GeoMathUtil {
      }
 
      /**
-      * Interpolate to grid data
+      * 插值到格网数据
       *
       * @param stationData StationData
       * @param interSet Interpolation setting
@@ -449,10 +449,10 @@ public class GeoMathUtil {
      }
 
      /**
-      * Create grid X/Y coordinate
+      * 创建栅格 X/Y 坐标
       *
       * @param gSet
-      * @return X/Y coordinate array list
+      * @return X/Y 坐标数组列表
       */
      public static List<double[]> createGridXY(GridDataSetting gSet) {
          double xDelt = (gSet.dataExtent.maxX - gSet.dataExtent.minX) / (double) (gSet.xNum - 1);
