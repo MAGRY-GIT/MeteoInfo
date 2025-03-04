@@ -31,6 +31,20 @@ import java.util.List;
 public class Dimension {
     // <editor-fold desc="Variables">
 
+    /**
+     * 私有成员变量说明：
+     *
+     * name: 用于存储对象的名称，例如维度的名称。
+     * dimType: 定义了维度的类型，例如空间、时间等。
+     * dimValue: 存储维度的具体值，可以是一个数组。
+     * dimId: 维度的唯一标识符。
+     * unlimited: 标记维度是否无限，例如在某些情况下，维度的大小是不固定的。
+     * variableLength: 标记维度是否具有可变长度，与unlimited类似，但更侧重于长度的变化。
+     * shared: 标记维度是否被多个对象或实体共享。
+     * reverse: 标记维度的方向是否是逆向的，可能在某些计算或排序中需要考虑。
+     * unit: 维度值的单位，例如米、秒等。初始化为"null"表示尚未指定单位。
+     * stagger: 标记维度是否交错，这在某些数据结构或计算中可能需要。
+     */
     private String name;
     private DimensionType dimType;
     private Array dimValue;

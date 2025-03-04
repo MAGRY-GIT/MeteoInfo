@@ -1038,14 +1038,25 @@ public class FrmMeteoData extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * 处理查看数据按钮的点击事件
+     * 根据气象数据类型（格点数据或站点数据）调用相应的数据查看方法
+     * 如果是站点数据，还会检查格点数据是否可用，如果可用则同时查看格点数据
+     *
+     * @param evt ActionEvent事件对象，包含事件的上下文信息
+     */
     private void jButton_ViewDataActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        // 检查当前气象数据信息是否为格点数据
         if (_meteoDataInfo.isGridData()) {
             viewGridData();
         } else if (_meteoDataInfo.isStationData()) {
+            // 如果不是格点数据，则检查是否为站点数据
             viewStationData();
+            // 进一步检查是否存在格点数据，以及格点数据的X轴和Y轴数组是否非空
             if (_gridData != null) {
                 if (_gridData.getXArray() != null && _gridData.getYArray() != null) {
+                    // 确认格点数据的X轴和Y轴数据点数量均大于0，以确保数据有效
                     if (_gridData.getXNum() > 0 && _gridData.getYNum() > 0) {
                         viewGridData();
                     }
@@ -1053,7 +1064,6 @@ public class FrmMeteoData extends javax.swing.JDialog {
             }
         }
     }
-
     private void viewGridData() {
         if (_gridData == null) {
             return;
@@ -2242,44 +2252,72 @@ public class FrmMeteoData extends javax.swing.JDialog {
     // <editor-fold desc="Methods">
     // <editor-fold desc="MeteoDataInfo">
 
+
     /**
-     * Add a meteo data info
+     * 向气象数据集合中添加新的气象数据信息
      *
-     * @param aDataInfo The meteo data info
+     * @param aDataInfo 要添加的气象数据信息对象
      */
     public void addMeteoData(MeteoDataInfo aDataInfo) {
+        // 将气象数据信息添加到数据集合中
         _dataInfoList.add(aDataInfo);
+
+        // 获取当前数据文件列表的模型
         DefaultListModel listModel = (DefaultListModel) this.jList_DataFiles.getModel();
+
+        // 向列表模型中添加新的数据文件名称
         listModel.addElement(new File(aDataInfo.getFileName()).getName());
+
+        // 重新设置数据文件列表的模型
         this.jList_DataFiles.setModel(listModel);
+
+        // 选择列表中最后一个数据文件
         this.jList_DataFiles.setSelectedIndex(listModel.size() - 1);
+
+        // 更新当前选中的气象数据信息
         _meteoDataInfo = _dataInfoList.get(this.jList_DataFiles.getSelectedIndex());
+
+        // 更新相关参数以反映新添加的气象数据信息
         updateParameters();
     }
 
+    /**
+     * 更新参数根据当前的气象数据信息
+     * 此方法主要用于界面初始化或数据类型发生变化时，更新界面上的相关参数设置
+     */
     private void updateParameters() {
+        // 获取气象数据信息
         int i;
         DataInfo aDataInfo = _meteoDataInfo.getDataInfo();
+
+        // 根据数据类型更新界面显示
         switch (_meteoDataInfo.getDataType()) {
             case GRADS_GRID:
             case GRADS_STATION:
+                // 对于GrADS格式的数据，设置大端字节序选项的可见性和选中状态
                 this.jCheckBox_Big_Endian.setVisible(true);
                 this.jCheckBox_Big_Endian.setSelected(((GrADSDataInfo) aDataInfo).isBigEndian());
                 break;
             default:
+                // 对于其他数据类型，隐藏大端字节序选项
                 this.jCheckBox_Big_Endian.setVisible(false);
                 break;
         }
+
+        // 更新窗口标题以显示当前数据类型
         String dataType = _meteoDataInfo.getDataType().toString();
         if (_meteoDataInfo.getDataType() == MeteoDataType.NETCDF) {
             dataType = ((NetCDFDataInfo) _meteoDataInfo.getDataInfo()).getFileTypeId();
         }
         this.setTitle(this.getTitle().split("-")[0].trim() + " - " + dataType);
 
+        // 启用数据集面板和工具栏
         this.jPanel_DataSet.setEnabled(true);
         for (Component aItem : this.jToolBar1.getComponents()) {
             aItem.setEnabled(true);
         }
+
+        // 根据数据类型禁用或启用某些功能按钮
         this.jButton_DrawSetting.setEnabled(false);
         this.jButton_Animator.setEnabled(false);
         this.jButton_PreTime.setEnabled(false);
@@ -2291,13 +2329,13 @@ public class FrmMeteoData extends javax.swing.JDialog {
                 break;
         }
 
-        //Projection
+        // 更新投影信息
         updateProjection();
 
-        //Set draw type
-        //this.jComboBox_DrawType.removeAllItems();
+        // 设置绘制类型
         DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel();
         if (_meteoDataInfo.isGridData()) {
+            // 为格点数据添加绘制类型选项
             comboBoxModel.addElement(DrawType2D.RASTER);
             comboBoxModel.addElement(DrawType2D.CONTOUR);
             comboBoxModel.addElement(DrawType2D.SHADED);
@@ -2307,6 +2345,7 @@ public class FrmMeteoData extends javax.swing.JDialog {
             comboBoxModel.addElement(DrawType2D.BARB);
             comboBoxModel.addElement(DrawType2D.STREAMLINE);
         } else if (_meteoDataInfo.isStationData()) {
+            // 为站点数据添加绘制类型选项
             switch (_meteoDataInfo.getDataType()) {
                 case HYSPLIT_PARTICLE:
                     comboBoxModel.addElement(DrawType2D.STATION_POINT);
@@ -2324,9 +2363,11 @@ public class FrmMeteoData extends javax.swing.JDialog {
                     break;
             }
         } else if (_meteoDataInfo.isSWATHData()) {
+            // 为SWATH数据添加绘制类型选项
             comboBoxModel.addElement(DrawType2D.RASTER);
             comboBoxModel.addElement(DrawType2D.STATION_POINT);
         } else {
+            // 为其他数据类型添加绘制类型选项
             comboBoxModel.addElement(DrawType2D.TRAJECTORY_LINE);
             comboBoxModel.addElement(DrawType2D.TRAJECTORY_POINT);
             comboBoxModel.addElement(DrawType2D.TRAJECTORY_START_POINT);
@@ -2337,7 +2378,7 @@ public class FrmMeteoData extends javax.swing.JDialog {
         }
         this.jComboBox_DrawType.setSelectedItem(this._meteoDataInfo.getDrawType2D());
 
-        //Set vars
+        // 设置变量列表
         _isLoading = true;
         this.jComboBox_Variable.setEnabled(true);
         this.jComboBox_Variable.removeAllItems();
@@ -2562,6 +2603,11 @@ public class FrmMeteoData extends javax.swing.JDialog {
         return drawMeteoMap_Grid(true, _legendScheme, fieldName);
     }
 
+    /**
+     * 绘制站
+     * @param fieldName
+     * @return
+     */
     private MapLayer drawStation(String fieldName) {
         //this.jComboBox_Variable.actionPerformed(null);
         String vName = fieldName;

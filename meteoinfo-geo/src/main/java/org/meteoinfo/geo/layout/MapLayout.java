@@ -3069,7 +3069,7 @@ import org.xml.sax.SAXException;
      }
 
      /**
-      * Export to a picture file
+      * 导出到图片文件
       *
       * @param fileName File path
       * @param dpi DPI

@@ -265,7 +265,7 @@ public class MapView extends JPanel implements IWebMapPanel {
 
     // <editor-fold desc="Constructor">
     /**
-     * Constructor
+     * 构造函数
      */
     public MapView() {
         super();

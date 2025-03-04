@@ -43,7 +43,7 @@ import org.meteoinfo.projection.ProjectionInfo;
 import org.meteoinfo.ndarray.Index;
 
 /**
- *
+ *  栅格图层
  * @author yaqiang
  */
 public class RasterLayer extends ImageLayer {

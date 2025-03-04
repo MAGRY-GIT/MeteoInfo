@@ -47,12 +47,14 @@ import org.meteoinfo.geometry.shape.Shape;
 public class LegendManage {
 
     /**
-     * Create legend scheme from grid data
+     * 根据给定的网格数据和参数生成图例方案
+     * 此方法首先从网格数据中获取最大值和最小值，然后创建等高线值和颜色数组
+     * 根据图例类型（唯一值或分级），调用相应的图例方案创建方法
      *
-     * @param aGridData Grid data
-     * @param aLT Legend type
-     * @param aST Shape type
-     * @return Legend scheme
+     * @param aGridData 网格数据对象，包含地理数据信息
+     * @param aLT 图例类型，决定使用唯一值还是分级图例
+     * @param aST 形状类型，定义图例的几何形状
+     * @return 返回生成的图例方案对象
      */
     public static LegendScheme createLegendSchemeFromGridData(GridData aGridData,
                                                               LegendType aLT, ShapeTypes aST) {
@@ -60,11 +62,13 @@ public class LegendManage {
         double[] CValues;
         Color[] colors;
         double[] maxmin = new double[2];
+        // 获取网格数据的最大值和最小值
         boolean hasUndef = aGridData.getMaxMinValue(maxmin);
         double MinData = maxmin[1];
         double MaxData = maxmin[0];
-
+        // 生成等高线值
         CValues = createContourValues(MinData, MaxData);
+        // 生成彩虹颜色数组，颜色数量比等高线值多一个
         colors = createRainBowColors(CValues.length + 1);
 
 //        List<String> values = new ArrayList<String>();
@@ -73,7 +77,7 @@ public class LegendManage {
 //            //values.add(String.format(dFormat, v));
 //            values.add(String.valueOf(v));
 //        }
-        //Generate lengendscheme  
+        // 根据图例类型生成图例方案
         if (aLT == LegendType.UNIQUE_VALUE) {
             aLS = createUniqValueLegendScheme(CValues, colors,
                     aST, MinData, MaxData, hasUndef, aGridData.getDoubleMissingValue());
@@ -159,17 +163,26 @@ public class LegendManage {
     }
 
     /**
-     * Create single symbol legend scheme
+     * 根据形状类型创建单符号图例方案
+     * 此方法根据输入的形状类型（点、线或面）选择合适的颜色和大小来创建图例方案
+     * 对于不同类型的形状，方法会选择不同的默认颜色和大小：
+     * - 点类型：绿色，大小为8.0f
+     * - 线类型：蓝色，大小为1.0f
+     * - 面类型或其他：青色，大小为1.0f
      *
-     * @param shapeType The shape type
-     * @return Legend scheme
+     * @param shapeType 形状类型，用于确定图例的基本属性
+     * @return 返回一个根据形状类型配置了单符号的图例方案对象
      */
     public static LegendScheme createSingleSymbolLegendScheme(ShapeTypes shapeType) {
+        // 判断形状类型是否为点
         if (shapeType.isPoint()) {
+            // 是点，则创建绿色、大小为8.0f的图例方案
             return createSingleSymbolLegendScheme(shapeType, Color.green, 8.0f);
         } else if (shapeType.isLine()) {
+            // 是线，则创建蓝色、大小为1.0f的图例方案
             return createSingleSymbolLegendScheme(shapeType, Color.blue, 1.0f);
         } else {
+            // 是面或其他类型，则创建青色、大小为1.0f的图例方案
             return createSingleSymbolLegendScheme(shapeType, Color.cyan, 1.0f);
         }
     }
@@ -235,17 +248,19 @@ public class LegendManage {
     }
 
     /**
-     * Create unique value legend scheme
+     * 创建一个唯一的值图例方案
+     * 该方法根据提供的参数生成一个图例方案对象，该图例方案具有唯一的值类型，
+     * 并根据提供的颜色、形状类型和其他参数为每个图例项设置特定的样式
      *
-     * @param CValues The values
-     * @param captions The captions
-     * @param colors The colors
-     * @param aST The shape type
-     * @param min Minimum value
-     * @param max Maximum value
-     * @param hasNodata If has undefine data
-     * @param unDef Undefine data
-     * @return The legend scheme
+     * @param CValues 图例项的值列表这些值用于设置图例项的起始值和结束值
+     * @param captions 图例项的标题列表这些标题用于标识图例项
+     * @param colors 图例项的颜色数组颜色数量应与图例项数量匹配
+     * @param aST 图例项的形状类型包括点、线、面
+     * @param min 图例方案的最小值
+     * @param max 图例方案的最大值
+     * @param hasNodata 是否包含未定义值的图例项
+     * @param unDef 未定义值的特定值
+     * @return 返回一个设置好图例项和样式的图例方案对象
      */
     public static LegendScheme createUniqValueLegendScheme(List<String> CValues, List<String> captions, Color[] colors, ShapeTypes aST,
             double min, double max, boolean hasNodata, double unDef) {
@@ -1761,7 +1776,7 @@ public class LegendManage {
     }
 
     /**
-     * Get contour values and colors from legend scheme
+     * 从图例方案中获取等值线值和颜色
      *
      * @param aLS The legend scheme
      * @return Contour and color values

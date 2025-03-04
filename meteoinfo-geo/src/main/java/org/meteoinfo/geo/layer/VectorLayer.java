@@ -1603,7 +1603,7 @@ public class VectorLayer extends MapLayer {
     }
 
     /**
-     * Clip the layer by a clipping layer
+     * 通过剪切图层剪切图层
      *
      * @param clipLayer Clipping layer
      * @return Clipped result layer

@@ -14,13 +14,16 @@
 package org.meteoinfo.data.meteodata;
 
 /**
- *
- * @author Yaqiang Wang
+ *  @author Yaqiang Wang
+ * 定义气象数据解析类型枚举，用于标识不同的气象数据格式
+ * 这些枚举值代表了各种气象数据的格式标准，例如GRADS、MICAPS、HYSPLIT等
+ * 每个枚举值对应一种特定的数据格式，用于在数据解析和处理时进行区分和选择
  */
 public enum MeteoDataType {
 
         GRADS_GRID,
         GRADS_STATION,
+
         MICAPS_1,
         MICAPS_2,
         MICAPS_3,
@@ -31,9 +34,11 @@ public enum MeteoDataType {
         MICAPS_120,
         MICAPS_131,
         MICAPS_MDFS,
+
         HYSPLIT_CONC,
         HYSPLIT_PARTICLE,
         HYSPLIT_TRAJ,
+
         ARL_GRID,
         NETCDF,
         HDF,
@@ -43,8 +48,10 @@ public enum MeteoDataType {
         METAR,
         ISH,
         LON_LAT_STATION,
+
         GRIB1,
         GRIB2,
+
         AWX,
         HRIT,
         MM5,

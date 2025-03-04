@@ -40,45 +40,20 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Superclass for implementations of multidimensional arrays. An Array has a
- * <b>classType</b> which gives the Class of its elements, and a <b>shape</b>
- * which describes the number of elements in each index. The <b>rank</b> is the
- * number of indices. A <b>scalar</b> Array has rank = 0. An Array may have
- * arbitrary rank. The Array <b>size</b> is the total number of elements, which
- * must be less than 2^31 (about 2x10^9).
- * <p/>
- * Actual data storage is done with Java 1D arrays and stride index
- * calculations. This makes our Arrays rectangular, i.e. no "ragged arrays"
- * where different elements can have different lengths as in Java
- * multidimensional arrays, which are arrays of arrays.
- * <p/>
- * Each primitive Java type (boolean, byte, char, short, int, long, float,
- * double) has a corresponding concrete implementation, e.g. ArrayBoolean,
- * ArrayDouble. Reference types are all implemented using the ArrayObject class,
- * with the exceptions of the reference types that correspond to the primitive
- * types, eg Double.class is mapped to double.class.
- * <p/>
- * For efficiency, each Array type implementation has concrete subclasses for
- * ranks 0-7, eg ArrayDouble.D0 is a double array of rank 0, ArrayDouble.D1 is a
- * double array of rank 1, etc. These type and rank specific classes are
- * convenient to work with when you know the type and rank of the Array. Ranks
- * greater than 7 are handled by the type-specific superclass e.g. ArrayDouble.
- * The Array class itself is used for fully general handling of any type and
- * rank array. Use the Array.factory() methods to create Arrays in a general
- * way.
- * <p/>
- * The stride index calculations allow <b>logical views</b> to be efficiently
- * implemented, eg subset, transpose, slice, etc. These views use the same data
- * storage as the original Array they are derived from. The index stride
- * calculations are equally efficient for any composition of logical views.
- * <p/>
- * The type, shape and backing storage of an Array are immutable. The data
- * itself is read or written using an Index or an IndexIterator, which stores
- * any needed state information for efficient traversal. This makes use of
- * Arrays thread-safe (as long as you dont share the Index or IndexIterator)
- * except for the possibility of non-atomic read/write on long/doubles. If this
- * is the case, you should probably synchronize your calls. Presumably 64-bit
- * CPUs will make those operations atomic also.
+ * 多维数组实现的基类。`Array` 具有以下特性：
+- **classType**：表示元素的类类型。
+- **shape**：描述每个索引中的元素数量。**rank** 是索引的数量。**标量** 数组的 rank 为 0。数组可以具有任意 rank。数组的 **size** 是总元素数量，必须小于 2^31（约 2x10^9）。
+
+实际数据存储使用 Java 一维数组和 stride 索引计算。这使得我们的数组是矩形的，即不像 Java 的多维数组那样可以有不同的长度（即“锯齿数组”）。
+
+每个基本 Java 类型（boolean, byte, char, short, int, long, float, double）都有一个对应的具体实现，例如 `ArrayBoolean`、`ArrayDouble`。引用类型全部使用 `ArrayObject` 类实现，但与基本类型对应的引用类型（如 `Double.class`）映射到基本类型（如 `double.class`）。
+
+为了提高效率，每个数组类型的实现对 rank 0-7 都有具体子类，例如 `ArrayDouble.D0` 是 rank 为 0 的 double 数组，`ArrayDouble.D1` 是 rank 为 1 的 double 数组等。这些类型和 rank 特定的类在已知数组的类型和 rank 时非常方便使用。rank 大于 7 的情况由类型特定的超类（如 `ArrayDouble`）处理。`Array` 类本身用于通用处理任何类型和 rank 的数组。使用 `Array.factory()` 方法以通用方式创建数组。
+
+stride 索引计算允许高效实现 **逻辑视图**，例如子集、转置、切片等。这些视图使用与原始数组相同的存储。索引 stride 计算对于任何逻辑视图组合同样高效。
+
+数组的类型、形状和后备存储是不可变的。数据本身通过 `Index` 或 `IndexIterator` 进行读写，它们存储了高效遍历所需的任何状态信息。这使得数组的使用是线程安全的（只要不共享 `Index` 或 `IndexIterator`），除了可能存在的非原子读/写操作（如 long/doubles）。如果存在这种情况，您应该同步调用。假设 64 位 CPU 将使这些操作也变为原子操作。
+
  *
  * @author caron
  * @see Index

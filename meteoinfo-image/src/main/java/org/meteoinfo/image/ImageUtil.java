@@ -46,7 +46,7 @@ public class ImageUtil {
     private final static double INCH_2_CM = 2.54;
     
     /**
-     * Read RGB array data from image file
+     * 从图像文件中读取 RGB 数组数据
      * @param fileName Image file name
      * @return RGB array data
      * @throws IOException
@@ -64,7 +64,7 @@ public class ImageUtil {
     }
     
     /**
-     * Read RGB array data from image
+     * 从图像中读取 RGB 数组数据
      * @param image Image
      * @return RGB array data
      */
@@ -88,7 +88,7 @@ public class ImageUtil {
     }
     
     /**
-     * Load image from image file
+     * 从图像文件加载图像
      * @param fileName Image file name
      * @return Image
      * @throws IOException
@@ -106,7 +106,7 @@ public class ImageUtil {
     }
     
     /**
-     * Create image from RGB(A) data array
+     * 从 RGB（A） 数据数组创建图像
      * @param data RGB(A) data array
      * @return Image
      */
@@ -191,7 +191,7 @@ public class ImageUtil {
     }
     
     /**
-     * Save image into a file
+     * 将图像保存到文件中
      * @param data RGB(A) data array
      * @param fileName Output image file name
      * @throws IOException 
@@ -203,7 +203,7 @@ public class ImageUtil {
     }
     
     /**
-     * Save image into a file
+     * 将图像保存到文件中
      * @param image Image
      * @param fileName Output image file name
      * @throws IOException 
@@ -222,7 +222,7 @@ public class ImageUtil {
     }
 
     /**
-     * Save image into a file
+     * 将图像保存到文件中
      * @param image Image
      * @param fileName Output image file name
      * @throws IOException
@@ -282,7 +282,7 @@ public class ImageUtil {
     }
 
     /**
-     * Get image format
+     * 获取图像格式
      * @param fileName The file name
      * @return Image format
      */
@@ -309,7 +309,7 @@ public class ImageUtil {
     }
     
     /**
-     * Count none-zero points with window size
+     * 使用窗口大小对非零点进行计数
      * @param data Input data
      * @param size Window size
      * @return Count array
@@ -348,7 +348,7 @@ public class ImageUtil {
     }
     
     /**
-     * Calculate mean value with window size
+     * 使用窗口大小计算平均值
      * @param data Input data
      * @param size Window size
      * @param positive Only calculate the positive value or not.
@@ -405,7 +405,7 @@ public class ImageUtil {
     }
 
     /**
-     * Calculate a multi-dimensional minimum filter.
+     * 计算多维最小过滤器。
      * @param data Input data
      * @param size Window size
      * @return Minimum filter array
@@ -440,7 +440,7 @@ public class ImageUtil {
     }
 
     /**
-     * Calculate a multi-dimensional maximum filter.
+     * 计算多维最大滤波器。
      * @param data Input data
      * @param size Window size
      * @return Maximum filter array
@@ -500,7 +500,7 @@ public class ImageUtil {
     }
 
     /**
-     * Calculate a multi-dimensional gaussian filter.
+     *  计算多维高斯滤波器。
      * @param data Input data
      * @param size Window size
      * @param sigma Sigma

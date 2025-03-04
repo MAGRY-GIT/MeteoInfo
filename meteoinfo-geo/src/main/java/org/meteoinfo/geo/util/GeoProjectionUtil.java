@@ -99,19 +99,25 @@ public class GeoProjectionUtil {
 
 
     /**
-     * Project vector layer
+     * 重新投影矢量图层
+     * 此方法用于将矢量图层从其当前投影转换到另一个指定的投影
+     * 它首先计算目标投影的参考经度，然后调用另一个projectLayer方法进行实际的投影转换
      *
-     * @param oLayer The layer
-     * @param toProj To projection info
+     * @param oLayer 要进行投影转换的矢量图层
+     * @param toProj 目标投影信息，包含转换所需的所有参数
      */
     public static void projectLayer(VectorLayer oLayer, ProjectionInfo toProj) {
+        // 获取目标投影的参考经度，并将其调整到-180到180之间的范围
         double refLon = toProj.getCoordinateReferenceSystem().getProjection().getProjectionLongitudeDegrees();
         refLon += 180;
+        // 如果调整后的参考经度超过180度，则减去360度，以确保其在有效范围内
         if (refLon > 180) {
             refLon = refLon - 360;
         } else if (refLon < -180) {
+            // 如果调整后的参考经度小于-180度，则加上360度，同样是为了保持在有效范围内
             refLon = refLon + 360;
         }
+        // 调用另一个重载的projectLayer方法，执行实际的投影转换
         projectLayer(oLayer, toProj, refLon, true);
     }
 

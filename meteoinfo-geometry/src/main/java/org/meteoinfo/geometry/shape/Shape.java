@@ -353,7 +353,7 @@ public abstract class Shape implements Cloneable{
     }
     
     /**
-     * Get intersection shape
+     * 获取交点形状
      * @param b Other shape
      * @return Intersection shape
      */

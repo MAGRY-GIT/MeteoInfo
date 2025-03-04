@@ -24,7 +24,7 @@ import org.meteoinfo.ndarray.*;
 public class GeometryUtil {
 
     /**
-     * Get extent from point list
+     * Get extent from point list从点列表中获取范围
      *
      * @param PList point list
      * @return extent

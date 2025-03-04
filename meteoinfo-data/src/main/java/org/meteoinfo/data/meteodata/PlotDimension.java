@@ -19,43 +19,43 @@ package org.meteoinfo.data.meteodata;
  */
 public enum PlotDimension {
     /// <summary>
-        /// Lat_Lon
+        /// 表示经纬度组合的维度类型
         /// </summary>
         Lat_Lon,
         /// <summary>
-        /// Time_Lon
+        /// 表示时间与经度组合的维度类型
         /// </summary>
         Time_Lon,
         /// <summary>
-        /// Time_Lat
+        /// 表示时间与纬度组合的维度类型
         /// </summary>
         Time_Lat,
         /// <summary>
-        /// Level_Lon
+        /// 表示层次与经度组合的维度类型
         /// </summary>
         Level_Lon,
         /// <summary>
-        /// Level_Lat
+        /// 表示层次与纬度组合的维度类型
         /// </summary>
         Level_Lat,
         /// <summary>
-        /// Level_Time
+        /// 表示层次与时间组合的维度类型
         /// </summary>
         Level_Time,
         /// <summary>
-        /// Time
+        /// 表示时间维度类型
         /// </summary>
         Time,
         /// <summary>
-        /// Level
+        /// 表示层次维度类型
         /// </summary>
         Level,
         /// <summary>
-        /// Longitude
+        /// 表示经度维度类型
         /// </summary>
         Lon,
         /// <summary>
-        /// Latitude
+        /// 表示纬度维度类型
         /// </summary>
         Lat,
 }

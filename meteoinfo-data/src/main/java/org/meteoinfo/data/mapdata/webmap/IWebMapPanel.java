@@ -13,18 +13,18 @@ import java.awt.*;
  */
 public interface IWebMapPanel {
     /**
-     * Get web map layer zoom
+     * 获取 Web 地图图层缩放
      * @return Web map layer zoom
      */
     public abstract int getWebMapZoom();
     
     /**
-     * Re draw function
+     * 重新绘制功能
      */
     public abstract void reDraw();
 
     /**
-     * Re draw function
+     * 重新绘制功能
      * @param graphics2D Graphics2D object
      * @param width Width
      * @param height Height

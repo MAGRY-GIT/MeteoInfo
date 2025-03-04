@@ -21,7 +21,7 @@ import org.meteoinfo.projection.ProjectionInfo;
 import org.meteoinfo.geometry.shape.ShapeTypes;
 
  /**
-  * Map layer class
+  * 地图图层类
   *
   * @author Yaqiang Wang
   */

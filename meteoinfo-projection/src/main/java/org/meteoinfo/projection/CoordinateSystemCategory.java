@@ -14,7 +14,7 @@
 package org.meteoinfo.projection;
 
 /**
- *
+ * 坐标系类别
  * @author Yaqiang Wang
  */
 public class CoordinateSystemCategory {

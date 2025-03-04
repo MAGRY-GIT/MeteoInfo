@@ -18,11 +18,11 @@ import java.util.List;
 
 public class GeoMathUtil {
     /**
-     * Mask out grid data with a polygon shape
+     * 用多边形形状遮罩网格数据
      *
-     * @param gridData The grid data
-     * @param aPGS The polygon shape
-     * @return Maskouted grid data
+     * @param gridData 网格数据
+     * @param aPGS 多边形形状
+     * @return 遮罩后的网格数据
      */
     public static GridData maskout(GridData gridData, PolygonShape aPGS) {
         int xNum = gridData.getXNum();
@@ -55,11 +55,11 @@ public class GeoMathUtil {
     }
 
     /**
-     * Mask out grid data with polygon shapes
+     * 用多边形形状遮罩网格数据
      *
-     * @param gridData The grid data
-     * @param polygons The polygon shapes
-     * @return Maskouted grid data
+     * @param gridData 网格数据
+     * @param polygons 多边形形状
+     * @return 遮罩后的网格数据
      */
     public static GridData maskout(GridData gridData, List<PolygonShape> polygons) {
         int xNum = gridData.getXNum();
@@ -81,12 +81,13 @@ public class GeoMathUtil {
         return cGrid;
     }
 
+
     /**
-     * Mask out grid data with a polygon layer
+     * 用多边形图层遮罩网格数据
      *
-     * @param gridData The grid data
-     * @param maskLayer The polygon layer
-     * @return Maskouted grid data
+     * @param gridData 网格数据
+     * @param maskLayer 多边形图层
+     * @return 遮罩后的网格数据
      */
     public static GridData maskout(GridData gridData, VectorLayer maskLayer) {
         if (maskLayer.getShapeType() != ShapeTypes.POLYGON) {
@@ -122,12 +123,12 @@ public class GeoMathUtil {
     }
 
     /**
-      * Maskout station data
-      *
-     * @param stationData StationData
-      * @param polygonShape Mask polygon shape
-      * @return Result station data
-      */
+     * 遮罩站点数据
+     *
+     * @param stationData 站点数据
+     * @param polygonShape 遮罩多边形形状
+     * @return 结果站点数据
+     */
      public static StationData maskout(StationData stationData, PolygonShape polygonShape) {
          StationData stData = new StationData();
          stData.projInfo = stationData.projInfo;
@@ -141,13 +142,13 @@ public class GeoMathUtil {
          return stData;
      }
 
-     /**
-      * Maskout station data
-      *
-      * @param stationData StationData
-      * @param polygonShapes Mask polygon shapes
-      * @return Result station data
-      */
+    /**
+     * 遮罩站点数据
+     *
+     * @param stationData 站点数据
+     * @param polygonShapes 遮罩多边形形状
+     * @return 结果站点数据
+     */
      public static StationData maskout(StationData stationData, List<PolygonShape> polygonShapes) {
          StationData stData = new StationData();
          stData.projInfo = stationData.projInfo;
@@ -161,13 +162,13 @@ public class GeoMathUtil {
          return stData;
      }
 
-     /**
-      * Maskout station data
-      *
-      * @param stationData StationData
-      * @param maskLayer Mask layer
-      * @return Result station data
-      */
+    /**
+     * 遮罩站点数据
+     *
+     * @param stationData 站点数据
+     * @param maskLayer 遮罩层
+     * @return 结果站点数据
+     */
      public static StationData maskout(StationData stationData, VectorLayer maskLayer) {
          if (maskLayer.getShapeType() != ShapeTypes.POLYGON) {
              return stationData;
@@ -177,13 +178,14 @@ public class GeoMathUtil {
          return maskout(stationData, polygons);
      }
 
-     /**
-      * Maskin station data
-      *
-      * @param stationData StationData
-      * @param polygonShape Mask polygon shape
-      * @return Result station data
-      */
+    /**
+     * 包含站点数据
+     *
+     * @param stationData 站点数据
+     * @param polygonShape 遮罩多边形形状
+     * @return 结果站点数据
+     */
+
      public static StationData maskin(StationData stationData, PolygonShape polygonShape) {
          StationData stData = new StationData();
          stData.projInfo = stationData.projInfo;
@@ -197,13 +199,13 @@ public class GeoMathUtil {
          return stData;
      }
 
-     /**
-      * Maskin station data
-      *
-      * @param stationData StationData
-      * @param polygonShapes Mask polygon shapes
-      * @return Result station data
-      */
+    /**
+     * 包含站点数据
+     *
+     * @param stationData 站点数据
+     * @param polygonShapes 遮罩多边形形状
+     * @return 结果站点数据
+     */
      public static StationData maskin(StationData stationData, List<PolygonShape> polygonShapes) {
          StationData stData = new StationData();
          stData.projInfo = stationData.projInfo;
@@ -217,13 +219,13 @@ public class GeoMathUtil {
          return stData;
      }
 
-     /**
-      * Maskin station data
-      *
-      * @param stationData StationData
-      * @param maskLayer Mask layer
-      * @return Result station data
-      */
+    /**
+     * 包含站点数据
+     *
+     * @param stationData 站点数据
+     * @param maskLayer 遮罩层
+     * @return 结果站点数据
+     */
      public static StationData maskin(StationData stationData, VectorLayer maskLayer) {
          if (maskLayer.getShapeType() != ShapeTypes.POLYGON) {
              return stationData;
@@ -233,13 +235,14 @@ public class GeoMathUtil {
          return maskin(stationData, polygons);
      }
 
-     /**
-      * Interpolate to grid data
-      *
-      * @param stationData StationData
-      * @param interSet Interpolation setting
-      * @return Grid data
-      */
+    /**
+     * 插值到网格数据
+     *
+     * @param stationData 站点数据
+     * @param interSet 插值设置
+     * @return 网格数据
+     */
+
      public static GridData interpolateData(StationData stationData, InterpolationSetting interSet) {
          GridData aGridData = null;
          double[] X;
@@ -283,17 +286,17 @@ public class GeoMathUtil {
          return aGridData;
      }
 
-     /**
-      * Interpolate by IDW radius method
-      *
-      * @param S Station data array
-      * @param X X coordinate array
-      * @param Y Y coordinate array
-      * @param minPNum Minimum point number
-      * @param radius Radius
-      * @param missingValue Missing value
-      * @return Grid data
-      */
+    /**
+     * 通过 IDW 半径方法插值
+     *
+     * @param S 站点数据数组
+     * @param X X 坐标数组
+     * @param Y Y 坐标数组
+     * @param minPNum 最小点数
+     * @param radius 半径
+     * @param missingValue 缺失值
+     * @return 网格数据
+     */
      public static GridData interpolate_Radius(double[][] S, double[] X, double[] Y,
              int minPNum, double radius, double missingValue) {
          double[][] dataArray;
@@ -302,17 +305,18 @@ public class GeoMathUtil {
          return new GridData(dataArray, X, Y, missingValue);
      }
 
-     /**
-      * Interpolate by IDW radius method
-      *
-      * @param stationData StationData
-      * @param X X coordinate array
-      * @param Y Y coordinate array
-      * @param minPNum Minimum point number
-      * @param radius Radius
-      * @param missingValue Missing value
-      * @return Grid data
-      */
+    /**
+     * 通过 IDW 半径方法插值
+     *
+     * @param stationData 站点数据
+     * @param X X 坐标数组
+     * @param Y Y 坐标数组
+     * @param minPNum 最小点数
+     * @param radius 半径
+     * @param missingValue 缺失值
+     * @return 网格数据
+     */
+
      public static GridData interpolate_Radius(StationData stationData, List<Number> X, List<Number> Y,
              int minPNum, double radius, double missingValue) {
          double[] nX = new double[X.size()];
@@ -327,32 +331,32 @@ public class GeoMathUtil {
          return interpolate_Radius(stationData.data, nX, nY, minPNum, radius, missingValue);
      }
 
-     /**
-      * Interpolate by IDW_Neighbor method
-      *
-      * @param S Station data array
-      * @param X X coordinate array
-      * @param Y Y coordinate array
-      * @param pNum Point number
-      * @param missingValue Missing value
-      * @return Grid data
-      */
+    /**
+     * 通过 IDW 邻居方法插值
+     *
+     * @param S 站点数据数组
+     * @param X X 坐标数组
+     * @param Y Y 坐标数组
+     * @param pNum 点数
+     * @param missingValue 缺失值
+     * @return 网格数据
+     */
      public static GridData interpolate_Neighbor(double[][] S, double[] X, double[] Y, int pNum, double missingValue) {
          double[][] dataArray = wcontour.Interpolate.interpolation_IDW_Neighbor(S, X, Y, pNum, missingValue);
 
          return new GridData(dataArray, X, Y, missingValue);
      }
 
-     /**
-      * Interpolate by IDW_Neighbor method
-      *
-      * @param stationData StationData
-      * @param X X coordinate array
-      * @param Y Y coordinate array
-      * @param pNum Point number
-      * @param missingValue Missing value
-      * @return Grid data
-      */
+    /**
+     * 通过 IDW 邻居方法插值
+     *
+     * @param stationData 站点数据
+     * @param X X 坐标数组
+     * @param Y Y 坐标数组
+     * @param pNum 点数
+     * @param missingValue 缺失值
+     * @return 网格数据
+     */
      public static GridData interpolate_Neighbor(StationData stationData, List<Number> X, List<Number> Y, int pNum, double missingValue) {
          double[] nX = new double[X.size()];
          double[] nY = new double[Y.size()];
@@ -366,16 +370,16 @@ public class GeoMathUtil {
          return interpolate_Neighbor(stationData.data, nX, nY, pNum, missingValue);
      }
 
-     /**
-      * Interpolation by Cressman method
-      *
-      * @param S Station data array
-      * @param X X coordinate array
-      * @param Y Y coordinate array
-      * @param radList Radius list
-      * @param missingValue Missing value
-      * @return Grid data
-      */
+    /**
+     * 通过 Cressman 方法插值
+     *
+     * @param S 站点数据数组
+     * @param X X 坐标数组
+     * @param Y Y 坐标数组
+     * @param radList 半径列表
+     * @param missingValue 缺失值
+     * @return 网格数据
+     */
      public static GridData interpolate_Cressman(double[][] S, double[] X, double[] Y,
              List<Double> radList, double missingValue) {
          double[][] dataArray = wcontour.Interpolate.cressman(S, X, Y, missingValue, radList);
@@ -383,16 +387,17 @@ public class GeoMathUtil {
          return new GridData(dataArray, X, Y, missingValue);
      }
 
-     /**
-      * Interpolation by Cressman method
-      *
-      * @param stationData StationData
-      * @param X X coordinate array
-      * @param Y Y coordinate array
-      * @param radList Radius list
-      * @param missingValue Missing value
-      * @return Grid data
-      */
+    /**
+     * 通过 Cressman 方法插值
+     *
+     * @param stationData 站点数据
+     * @param X X 坐标数组
+     * @param Y Y 坐标数组
+     * @param radList 半径列表
+     * @param missingValue 缺失值
+     * @return 网格数据
+     */
+
      public static GridData interpolate_Cressman(StationData stationData, List<Number> X, List<Number> Y,
              List<Number> radList, double missingValue) {
          double[] nX = new double[X.size()];
@@ -411,30 +416,30 @@ public class GeoMathUtil {
          return interpolate_Cressman(stationData.data, nX, nY, rlist, missingValue);
      }
 
-     /**
-      * Interpolation by assign method
-      *
-      * @param S Station data array
-      * @param X X coordinate array
-      * @param Y Y coordinate array
-      * @param missingValue Missing value
-      * @return Grid data
-      */
+    /**
+     * 通过分配方法插值
+     *
+     * @param S 站点数据数组
+     * @param X X 坐标数组
+     * @param Y Y 坐标数组
+     * @param missingValue 缺失值
+     * @return 网格数据
+     */
      public static GridData interpolate_Assign(double[][] S, double[] X, double[] Y, double missingValue) {
          double[][] dataArray = wcontour.Interpolate.assignPointToGrid(S, X, Y, missingValue);
 
          return new GridData(dataArray, X, Y, missingValue);
      }
 
-     /**
-      * Interpolation by assign method
-      *
-      * @param stationData StationData
-      * @param X X coordinate array
-      * @param Y Y coordinate array
-      * @param missingValue Missing value
-      * @return Grid data
-      */
+    /**
+     * 通过分配方法插值
+     *
+     * @param stationData 站点数据
+     * @param X X 坐标数组
+     * @param Y Y 坐标数组
+     * @param missingValue 缺失值
+     * @return 网格数据
+     */
      public static GridData interpolate_Assign(StationData stationData, List<Number> X, List<Number> Y, double missingValue) {
          double[] nX = new double[X.size()];
          double[] nY = new double[Y.size()];
@@ -449,10 +454,10 @@ public class GeoMathUtil {
      }
 
      /**
-      * Create grid X/Y coordinate
+      * 创建栅格 X/Y 坐标
       *
       * @param gSet
-      * @return X/Y coordinate array list
+      * @return X/Y 坐标数组列表
       */
      public static List<double[]> createGridXY(GridDataSetting gSet) {
          double xDelt = (gSet.dataExtent.maxX - gSet.dataExtent.minX) / (double) (gSet.xNum - 1);
